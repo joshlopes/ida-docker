@@ -1,6 +1,6 @@
 FROM alpine:3.13.0
 
-ENV IGNITE_VERSION=0.17.3
+ENV IGNITE_VERSION=0.21.2
 ENV NODE_VERSION=14.19.0-r0
 ENV GOPATH=$HOME/go-packages
 ENV GOROOT=$HOME/go
@@ -12,7 +12,7 @@ RUN apk add --no-cache curl make git libc-dev bash gcc linux-headers eudev-dev p
 
 COPY --from=golang:1.17-alpine /usr/local/go/ /usr/local/go/
 
-RUN wget -qO- https://github.com/ignite-hq/cli/releases/download/v0.21.2/ignite_0.21.2_linux_arm64.tar.gz | tar zxf - \
+RUN wget -qO- https://github.com/ignite-hq/cli/releases/download/v${IGNITE_VERSION}/ignite_${IGNITE_VERSION}_linux_arm64.tar.gz | tar zxf - \
     && mv ignite /usr/local/bin/ignite \
     && chmod +x /usr/local/bin/ignite
 
